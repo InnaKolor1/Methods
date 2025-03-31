@@ -1,67 +1,72 @@
-public class Main {
-    public static void main(String[] args)
-
-
-  System.out.println(" Задача1 ");
-    public class LeapYearChecker {
-        public static void main(String[] args) {
-            checkLeapYear(2021);
-        }
-
-        public static void checkLeapYear(int year) {
-            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-                System.out.println(year + " год — високосный год");
-            } else {
-                System.out.println(year + " год — невисокосный год");
-            }
-        }
-    }
-
-        System.out.println(" Задача2 ");
-
 import java.time.LocalDate;
 
-    public class AppInstaller {
-        public static void main(String[] args) {
-            suggestAppVersion(0, 2014); // пример вызова метода
-        }
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(" Задача 1");
+        int year = 2025;
+        boolean leapYear = leapYear(year);
+        printLeapYear(leapYear, year);
 
-        public static void suggestAppVersion(int osType, int deviceYear) {
-            int currentYear = LocalDate.now().getYear();
-            if (deviceYear < currentYear) {
-                if (osType == 0) {
-                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-                } else if (osType == 1) {
-                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
-                }
+
+        System.out.println(" Задача 2 ");
+        int clientPhoneOs = 0;
+        int clientDeviceYear = 2017;
+        int currentYear = LocalDate.now().getYear();
+        downloadAppVersionForYourDevice(clientDeviceYear, clientPhoneOs);
+
+        System.out.println(" Задача 3 ");
+        int distance = 13;
+        System.out.println(calculateDeliveryDays(distance));
+    }
+
+    //Задача1//
+    public static boolean leapYear(int year) {
+        return (year % 400 == 0) || (year % 100 != 0 && year % 4 == 0);
+    }
+
+    public static void printLeapYear(boolean leap, int year) {
+        if (leap) {
+            System.out.println(year + "  год — високосный год");
+        } else {
+            System.out.println(year + " год — невисокосный год");
+        }
+    }
+
+    //Задача2//
+    public static void downloadAppVersionForYourDevice(int clientDeviceYear, int clientPhoneOs) {
+
+        if (clientPhoneOs == 0) {
+            if (clientDeviceYear >= 2015) {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке");
             } else {
-                if (osType == 0) {
-                    System.out.println("Установите обычную версию приложения для iOS по ссылке");
-                } else if (osType == 1) {
-                    System.out.println("Установите обычную версию приложения для Android по ссылке");
-                }
+                System.out.println("Установите версию приложения для Android по ссылке");
+            }
+
+        } else if (clientPhoneOs == 1) {
+            if (clientDeviceYear <= 2015) {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+            } else {
+                System.out.println("Установите версию приложения для Android по ссылке");
+
             }
         }
     }
-    System.out.println(" Задача3 ");
 
-    public class DeliveryCalculator {
-        public static void main(String[] args) {
-            int days = calculateDeliveryDays(95); // пример вызова метода
-            System.out.println("Потребуется дней: " + days);
+    //Задача3//
+    public static String calculateDeliveryDays(int distance) {
+        int deliveryDays;
+
+        if (distance < 0) {
+            return "Недопустимое расстояние";
+        } else if (distance < 20) {
+            deliveryDays = 1;
+        } else if (distance < 60) {
+            deliveryDays = 2;
+        } else if (distance < 100) {
+            deliveryDays = 3;
+        } else {
+            return "Доставка недоступна на расстояния более 100 км";
         }
-
-        public static int calculateDeliveryDays(int deliveryDistance) {
-            if (deliveryDistance <= 20) {
-                return 1;
-            } else if (deliveryDistance <= 60) {
-                return 2;
-            } else if (deliveryDistance <= 100) {
-                return 3;
-            } else {
-                return -1; // Возвращаем -1, если доставка невозможна
-            }
-        }
+        return "Это занимает " + deliveryDays + " день";
     }
-
-    }
+}
