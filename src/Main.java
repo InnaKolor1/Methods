@@ -37,16 +37,16 @@ public class Main {
 
         if (clientPhoneOs == 0) {
             if (clientDeviceYear >= 2015) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+                System.out.println("Установите обычную версию для IOS по ссылке");
             } else {
-                System.out.println("Установите версию приложения для Android по ссылке");
+                System.out.println("Установите облегченную версию для IOS по ссылке");
             }
 
         } else if (clientPhoneOs == 1) {
             if (clientDeviceYear <= 2015) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+                System.out.println("Установить обычную версию для Android по ссылке");
             } else {
-                System.out.println("Установите версию приложения для Android по ссылке");
+                System.out.println("Установите облегченную версию для Android по ссылке");
 
             }
         }
